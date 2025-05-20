@@ -74,6 +74,27 @@ FastAPI genera documentación automática:
 - **CORS:**  
   El servidor acepta conexiones de cualquier origen.
 
+## Diagrama arquitectónico
+
+```mermaid
+flowchart TD
+    subgraph Clientes
+        C1[Cliente 1]
+        C2[Cliente 2]
+        C3[Cliente N]
+    end
+
+    C1 -- Pesos locales --> S[Servidor FastAPI<br>Aprendizaje Federado]
+    C2 -- Pesos locales --> S
+    C3 -- Pesos locales --> S
+
+    S -- Pesos globales<br>actualizados --> C1
+    S -- Pesos globales<br>actualizados --> C2
+    S -- Pesos globales<br>actualizados --> C3
+
+    S -.->|Swagger UI<br>Redoc| D[Documentación API]
+```
+
 ## Licencia
 
 MIT
